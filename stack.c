@@ -6,11 +6,11 @@
 /*   By: dhorvath <dhorvath@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:05:09 by dhorvath          #+#    #+#             */
-/*   Updated: 2023/12/10 19:04:11 by dhorvath         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:08:18 by dhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+
 
 #include "push_swap.h"
 
@@ -102,6 +102,8 @@ void push(t_stack *a, t_stack *b)
 	push_to_stack(b, a->s[0]);
 	remove_from_stack(a);	
 	printf("push from %c to %c\n", a->name, b->name);
+	print_list(a);
+	print_list(b);
 }
 
 void switch_top(t_stack *s)

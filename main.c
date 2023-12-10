@@ -6,7 +6,7 @@
 /*   By: dhorvath <dhorvath@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:12:00 by dhorvath          #+#    #+#             */
-/*   Updated: 2023/12/10 19:04:32 by dhorvath         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:56:59 by dhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	semi_sort(t_stack *a, t_stack *b)
 		}
 		/* do min step move NEEDS OPTIMSING EASY STEPS */
 		int b_rot = get_b_rot(a->s[min_index], b);
+		printf("b_rotation %i\n\n",b_rot);
 		while (min_index-- > 0)
 			rotate_list(a);
 		if (b_rot > 0)
@@ -128,10 +129,10 @@ int	get_b_rot(int val, t_stack *b)
 
 	if (b->size == 0)
 		return (0);
-	if (val < b->s[0] && val < b->s[b->size - 1])
+	if (val > b->s[0] && val < b->s[b->size - 1])
 		return (0);
 	rot = 1;
-	while (rot < b->size - 1)
+	while (rot < b->size)
 	{
 		if (val < b->s[rot - 1] && val > b->s[rot + 1])
 		{
