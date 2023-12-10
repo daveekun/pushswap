@@ -6,7 +6,7 @@
 /*   By: dhorvath <dhorvath@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:12:00 by dhorvath          #+#    #+#             */
-/*   Updated: 2023/12/10 18:20:01 by dhorvath         ###   ########.fr       */
+/*   Updated: 2023/12/10 18:27:33 by dhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,28 @@ void	semi_sort(t_stack *a, t_stack *b)
 				r_rotate_list(b);
 		}
 		push(a, b);
-	}	
+	}
+	if (a->s[0] > a->s[1])
+		switch_top(a);
+}
+
+int	get_b_rot(int val, t_stack *b)
+{
+	int rot;
+
+	if (val < b->s[0] && val < b->s[b->size - 1])
+		return (0);
+	rot = 1;
+	while (rot < b->size - 2)
+	{
+		if (val < b->s[rot - 1] && val > b->s[rot + 1])
+		{
+			if (rot < b->size - rot)
+				return (rot);
+			return (-1 * (b->size - rot));
+		}
+	}
+	return (-1);
 }
 
 int abs(int a)
