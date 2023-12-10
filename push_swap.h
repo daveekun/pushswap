@@ -6,15 +6,18 @@
 /*   By: dhorvath <dhorvath@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:40:28 by dhorvath          #+#    #+#             */
-/*   Updated: 2023/12/07 17:10:34 by dhorvath         ###   ########.fr       */
+/*   Updated: 2023/12/10 18:41:10 by dhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+#include <stdlib.h>
+
 typedef struct s_stack{
 	int size;
+	char name;
 	int	*s;
 } t_stack;
 

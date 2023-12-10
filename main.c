@@ -6,20 +6,31 @@
 /*   By: dhorvath <dhorvath@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:12:00 by dhorvath          #+#    #+#             */
-/*   Updated: 2023/12/10 18:37:26 by dhorvath         ###   ########.fr       */
+/*   Updated: 2023/12/10 18:47:43 by dhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 void	sort(t_stack *stack);
-
+void	put_back(t_stack *a, t_stack *b);
+void	semi_sort(t_stack *a, t_stack *b);
+int abs(int a);
+int	get_b_rot(int val, t_stack *b);
+int min(int a, int b);
 int	main(void)
 {
-	int f[5] = {3,2,1,4,5};
+	int *f;
 	t_stack a;
 
-	a = (t_stack){.s=&f[0], .size=5};
+	f = malloc(5 * sizeof(int));
+	f[0]=1;
+	f[1]=4;
+	f[2]=5;
+	f[3]=3;
+	f[4]=2;
+	a = (t_stack){.s=f, .size=5, .name='a'};
+	print_list(&a);
 	sort(&a);
 	print_list(&a);
 }
@@ -32,6 +43,7 @@ void	sort(t_stack *stack)
 	// repeat until b is empty
 	t_stack new_stack;
 
+	new_stack=(t_stack){.s=0, .size=0, .name='b'};
 	semi_sort(stack, &new_stack);
 	put_back(stack, &new_stack);
 }
@@ -87,6 +99,8 @@ int	get_b_rot(int val, t_stack *b)
 {
 	int rot;
 
+	if (b->size == 0)
+		return (0);
 	if (val < b->s[0] && val < b->s[b->size - 1])
 		return (0);
 	rot = 1;
