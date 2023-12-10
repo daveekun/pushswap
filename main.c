@@ -6,7 +6,7 @@
 /*   By: dhorvath <dhorvath@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:12:00 by dhorvath          #+#    #+#             */
-/*   Updated: 2023/12/10 18:06:57 by dhorvath         ###   ########.fr       */
+/*   Updated: 2023/12/10 18:20:01 by dhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,48 @@ void	sort(t_stack *stack, int block_size)
 
 void	semi_sort(t_stack *a, t_stack *b)
 {
-	int	steps;
 	int min_steps;
 	int min_index;
-	int i;
 	int	initial_rot;
-	int b_rotation_need;
 	
 	while (a->size > 2)
 	{
-		min_steps = 10000;
+		/* find minimum step movement */
+		min_steps = 100000;
 		initial_rot = 0;
 		while (initial_rot < a->size)
 		{
-			if ()
+			if (get_b_rot(a->s[initial_rot], b) + min(initial_rot, a->size - initial_rot) < min_steps)
+			{
+				min_index = initial_rot;
+				min_steps = get_b_rot(a->s[initial_rot], b) + min(initial_rot, a->size - initial_rot);
+			}
 			initial_rot++;
-		}		
+		}
+		/* do min step move NEEDS OPTIMSING EASY STEPS */
+		while (min_index-- > 0)
+			rotate_list(a);
+		int b_rot = get_b_rot(a->s[initial_rot], b);
+		if (b_rot > 0)
+		{
+			while (b_rot-- > 0)
+				rotate_list(b);
+		}
+		else
+		{
+			b_rot *= -1;
+			while (b_rot-- > 0)
+				r_rotate_list(b);
+		}
+		push(a, b);
 	}	
+}
+
+int abs(int a)
+{
+	if (a < 0)
+		return (-a);
+	return (a);
 }
 
 int min(int a, int b)
