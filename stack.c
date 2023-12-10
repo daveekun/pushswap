@@ -6,7 +6,7 @@
 /*   By: dhorvath <dhorvath@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:05:09 by dhorvath          #+#    #+#             */
-/*   Updated: 2023/12/10 18:51:05 by dhorvath         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:04:11 by dhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void rotate_list(t_stack *s)
 	i = 0;
 	while (i < s->size - 1)
 	{
-		s[i] = s[i + 1];
+		s->s[i] = s->s[i + 1];
 		i++;
 	}	
 	s->s[s->size - 1] = temp;
@@ -40,11 +40,11 @@ void r_rotate_list(t_stack *s)
 	if (s->size == 0 || s->size == 1)
 		return ;
 	temp = s->s[s->size - 1];
-	i = 0;
-	while (i < s->size - 1)
+	i = s->size - 1;
+	while (i > 0)
 	{
-		s[i + 1] = s[i];
-		i++;
+		s->s[i] = s->s[i - 1];
+		i--;
 	}	
 	s->s[0] = temp;
 	printf("reverse rotate %c\n", s->name);
@@ -56,7 +56,8 @@ void print_list(t_stack *s)
 
 	i = 0;
 	while (i < s->size)
-		printf("%i\n", s->s[i++]);
+		printf("%i ", s->s[i++]);
+	printf("\n");
 }
 
 void push_to_stack(t_stack *stack, int val)
@@ -69,10 +70,10 @@ void push_to_stack(t_stack *stack, int val)
 	i = 0;
 	while (i < stack->size)
 	{
-		stack->s[i] = old[i];
-		i++;	
+		stack->s[i + 1] = old[i];
+		i++;
 	}
-	stack->s[i] = val;
+	stack->s[0] = val;
 	stack->size += 1;
 	free(old);
 }
@@ -101,8 +102,6 @@ void push(t_stack *a, t_stack *b)
 	push_to_stack(b, a->s[0]);
 	remove_from_stack(a);	
 	printf("push from %c to %c\n", a->name, b->name);
-	print_list(a);
-	printf("#-----#\n");
 }
 
 void switch_top(t_stack *s)

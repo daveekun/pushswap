@@ -6,7 +6,7 @@
 /*   By: dhorvath <dhorvath@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:12:00 by dhorvath          #+#    #+#             */
-/*   Updated: 2023/12/10 18:47:43 by dhorvath         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:04:32 by dhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	semi_sort(t_stack *a, t_stack *b);
 int abs(int a);
 int	get_b_rot(int val, t_stack *b);
 int min(int a, int b);
+
 int	main(void)
 {
 	int *f;
@@ -34,6 +35,32 @@ int	main(void)
 	sort(&a);
 	print_list(&a);
 }
+
+// int	main(void)
+// {
+// 	int *f;
+// 	int *g;
+// 	t_stack a;
+// 	t_stack b;
+
+// 	f = malloc(5 * sizeof(int));
+// 	f[0]=0;
+// 	f[1]=0;
+// 	f[2]=0;
+// 	f[3]=0;
+// 	f[4]=0;
+// 	g = malloc(5 * sizeof(int));
+// 	g[0]=1;
+// 	g[1]=4;
+// 	g[2]=5;
+// 	g[3]=3;
+// 	g[4]=2;
+// 	a = (t_stack){.s=f, .size=5, .name='a'};
+// 	b = (t_stack){.s=g, .size=5, .name='b'};
+// 	print_list(&a);
+// 	push(&b, &a);	
+// 	print_list(&a);
+// }
 
 void	sort(t_stack *stack)
 {
