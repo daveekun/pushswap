@@ -6,11 +6,9 @@
 /*   By: dhorvath <dhorvath@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:05:09 by dhorvath          #+#    #+#             */
-/*   Updated: 2023/12/11 17:18:19 by dhorvath         ###   ########.fr       */
+/*   Updated: 2024/01/02 15:51:21 by dhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "push_swap.h"
 
@@ -29,7 +27,63 @@ void rotate_list(t_stack *s)
 		i++;
 	}	
 	s->s[s->size - 1] = temp;
-	printf("rotate %c\n", s->name);
+	printf("r%c\n", s->name);
+}
+void r_rotate_both(t_stack *a, t_stack *b)
+{
+	int	temp;
+	int	i;
+
+	if (a->size == 0 || a->size == 1)
+		return ;
+	temp = a->s[a->size - 1];
+	i = a->size - 1;
+	while (i > 0)
+	{
+		a->s[i] = a->s[i - 1];
+		i--;
+	}	
+	a->s[0] = temp;
+	
+	if (b->size == 0 || b->size == 1)
+		return ;
+	temp = b->s[b->size - 1];
+	i = b->size - 1;
+	while (i > 0)
+	{
+		b->s[i] = b->s[i - 1];
+		i--;
+	}	
+	b->s[0] = temp;	
+	printf("rrr\n");
+}
+void rotate_both(t_stack *a, t_stack *b)
+{
+	int	temp;
+	int	i;
+
+	if (a->size == 0 || a->size == 1)
+		return ;
+	temp = a->s[0];
+	i = 0;
+	while (i < a->size - 1)
+	{
+		a->s[i] = a->s[i + 1];
+		i++;
+	}	
+	a->s[a->size - 1] = temp;
+	
+	if (b->size == 0 || b->size == 1)
+		return ;
+	temp = b->s[0];
+	i = 0;
+	while (i < b->size - 1)
+	{
+		b->s[i] = b->s[i + 1];
+		i++;
+	}	
+	b->s[b->size - 1] = temp;	
+	printf("rr\n");
 }
 
 void r_rotate_list(t_stack *s)
@@ -47,7 +101,7 @@ void r_rotate_list(t_stack *s)
 		i--;
 	}	
 	s->s[0] = temp;
-	printf("reverse rotate %c\n", s->name);
+	printf("rr%c\n", s->name);
 }
 
 void print_list(t_stack *s)
@@ -100,8 +154,8 @@ void push(t_stack *a, t_stack *b)
 	if (a->size == 0)
 		return ;
 	push_to_stack(b, a->s[0]);
-	remove_from_stack(a);	
-	printf("push from %c to %c\n", a->name, b->name);
+	remove_from_stack(a);
+	printf("p%c\n", b->name);
 	// print_list(a);
 	// print_list(b);
 }
@@ -115,5 +169,5 @@ void switch_top(t_stack *s)
 	temp = s->s[0];
 	s->s[0] = s->s[1];
 	s->s[1] = temp;
-	printf("switch top %c\n", s->name);
+	printf("s%c\n", s->name);
 }

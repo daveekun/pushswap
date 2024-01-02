@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr_long_fd.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhorvath <dhorvath@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 16:40:28 by dhorvath          #+#    #+#             */
-/*   Updated: 2023/12/10 19:08:20 by dhorvath         ###   ########.fr       */
+/*   Created: 2023/11/13 16:46:07 by dhorvath          #+#    #+#             */
+/*   Updated: 2023/11/22 22:22:03 by dhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-
-typedef struct s_stack{
-	int size;
-	char name;
-	int	*s;
-} t_stack;
-
-void rotate_list(t_stack *s);
-void r_rotate_list(t_stack *s);
-void print_list(t_stack *s);
-void push(t_stack *a, t_stack *b);
-void switch_top(t_stack *s);
-
-#endif
+void	ft_putnbrlong_fd(long n, int fd)
+{
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n = -n;
+	}
+	if (n > 9)
+		ft_putnbrlong_fd(n / 10, fd);
+	ft_putchar_fd(n % 10 + '0', fd);
+}
