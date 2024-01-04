@@ -6,7 +6,7 @@
 /*   By: dhorvath <dhorvath@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:05:09 by dhorvath          #+#    #+#             */
-/*   Updated: 2024/01/04 19:41:06 by dhorvath         ###   ########.fr       */
+/*   Updated: 2024/01/04 21:58:22 by dhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	push(t_stack *a, t_stack *b)
 		return ;
 	push_to_stack(b, a->s[0]);
 	remove_from_stack(a);
-	ft_printf("p%c\n", b->name);
 }
 
 void	switch_top(t_stack *s)
@@ -65,7 +64,6 @@ void	switch_top(t_stack *s)
 	temp = s->s[0];
 	s->s[0] = s->s[1];
 	s->s[1] = temp;
-	ft_printf("s%c\n", s->name);
 }
 
 void	switch_top_both(t_stack *s1, t_stack *s2)
@@ -88,5 +86,4 @@ void	switch_top_both(t_stack *s1, t_stack *s2)
 		s2->s[0] = s2->s[1];
 		s2->s[1] = temp;
 	}
-	ft_printf("ss\n");
 }

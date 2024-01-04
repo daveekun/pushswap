@@ -6,7 +6,7 @@
 /*   By: dhorvath <dhorvath@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:19:26 by dhorvath          #+#    #+#             */
-/*   Updated: 2024/01/02 17:41:56 by dhorvath         ###   ########.fr       */
+/*   Updated: 2024/01/04 19:40:56 by dhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	put_back(t_stack *a, t_stack *b)
 		r_rotate_list(a);
 }
 
-static void sort_three(t_stack *s)
+static void	sort_three(t_stack *s)
 {
 	if (s->size == 1 || s->size == 0)
 		return ;
@@ -61,28 +61,27 @@ static void sort_three(t_stack *s)
 
 static void	semi_sort(t_stack *a, t_stack *b)
 {
-	int min_index;
-	int b_rot;
-	int i;
-	
+	int	min_index;
+	int	b_rot;
+
 	while (a->size > 3)
 	{
 		min_index = get_min_rotation(a, b);
 		b_rot = get_b_rot(a->s[min_index], b);
 		if (min_index > a->size - min_index)
-			rotate_correct_a(a, b, min_index, b_rot);	
+			rev_rotate_correct_a(a, b, min_index, b_rot);
 		else
-			rev_rotate_correct_a(a, b, min_index, b_rot);	
+			rotate_correct_a(a, b, min_index, b_rot);
 		push(a, b);
 	}
-	go_to_top_b(b);	
+	go_to_top_b(b);
 }
 
 void	sort(t_stack *stack)
 {
-	t_stack new_stack;
+	t_stack	new_stack;
 
-	new_stack=(t_stack){.s=0, .size=0, .name='b'};
+	new_stack = (t_stack){0, 'b', 0};
 	semi_sort(stack, &new_stack);
 	sort_three(stack);
 	put_back(stack, &new_stack);

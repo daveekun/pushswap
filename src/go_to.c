@@ -6,15 +6,15 @@
 /*   By: dhorvath <dhorvath@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:39:05 by dhorvath          #+#    #+#             */
-/*   Updated: 2024/01/02 17:54:17 by dhorvath         ###   ########.fr       */
+/*   Updated: 2024/01/04 17:59:36 by dhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void go_to_top_b(t_stack *b)
+void	go_to_top_b(t_stack *b)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < b->size && b->size > 0 && b->s[i] != get_max(b))
@@ -28,11 +28,11 @@ void go_to_top_b(t_stack *b)
 	else
 	{
 		while (i-- > 0)
-		rotate_list(b);
+			rotate_list(b);
 	}
 }
 
-void rotate_correct_a(t_stack *a, t_stack *b, int min_index, int b_rot)
+void	rev_rotate_correct_a(t_stack *a, t_stack *b, int min_index, int b_rot)
 {
 	if (b_rot > 0)
 	{
@@ -59,14 +59,14 @@ void rotate_correct_a(t_stack *a, t_stack *b, int min_index, int b_rot)
 	}
 }
 
-void rev_rotate_correct_a(t_stack *a, t_stack *b, int min_index, int b_rot)
+void	rotate_correct_a(t_stack *a, t_stack *b, int min_index, int b_rot)
 {
 	if (b_rot > 0)
 	{
 		while (min_index > 0 && b_rot > 0)
 		{
 			b_rot--;
-			min_index--;	
+			min_index--;
 			rotate_both(a, b);
 		}
 		while (b_rot-- > 0)
