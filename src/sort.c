@@ -6,7 +6,7 @@
 /*   By: dhorvath <dhorvath@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:19:26 by dhorvath          #+#    #+#             */
-/*   Updated: 2024/01/04 19:40:56 by dhorvath         ###   ########.fr       */
+/*   Updated: 2024/01/04 22:53:55 by dhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ static void	put_back(t_stack *a, t_stack *b)
 {
 	int	needed_reverse;
 
-	needed_reverse = 3;
+	if (b->size > 0 && a->s[0] > b->s[0])
+		needed_reverse = 0;
+	else
+		needed_reverse = 3;
 	while (b->size)
 	{
-		while (b->s[0] <= a->s[a->size - 1] && needed_reverse > 0)
+		while (b->s[0] < a->s[a->size - 1] && needed_reverse > 0)
 		{
 			needed_reverse--;
 			r_rotate_list(a);

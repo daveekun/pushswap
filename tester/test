@@ -37,7 +37,8 @@ echo "rrr:$(cat ops.log | grep -x ^rrr | wc -l)"
 echo Total: $OPCOUNT
 echo Running checker...
 cat ops.log | ../checker $SEQ
+cat ops.log | ./checker_MAC $SEQ
 if [[ $OPCOUNT -gt 5500 ]]; then
-	echo "$SEQ\n$OPCOUNT\n\n" >> error
+	echo "$OPCOUNT" >> error
 fi
 
